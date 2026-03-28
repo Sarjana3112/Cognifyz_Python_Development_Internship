@@ -1,19 +1,12 @@
-def temperature_converter():
-    print(" Temperature Converter")
-    print("1. Celsius to Fahrenheit")
-    print("2. Fahrenheit to Celsius")
+def fahrenheit_to_celsius(f):
+    return (f - 32) * 5/9
 
-    choice = input("Choose conversion (1/2): ")
+temp = float(input("Enter temperature value: "))
+unit = input("Enter unit (C/F): ").upper()
 
-    if choice == '1':
-        c = float(input("Enter temperature in Celsius: "))
-        f = (c * 9/5) + 32
-        print(f"Temperature in Fahrenheit: {f:.2f}")
-    elif choice == '2':
-        f = float(input("Enter temperature in Fahrenheit: "))
-        c = (f - 32) * 5/9
-        print(f"Temperature in Celsius: {c:.2f}")
-    else:
-        print("Invalid Choice!")
-
-temperature_converter()
+if unit == 'C':
+    print("Temperature in Fahrenheit:", celsius_to_fahrenheit(temp))
+elif unit == 'F':
+    print("Temperature in Celsius:", fahrenheit_to_celsius(temp))
+else:
+    print("Invalid unit! Please enter C or F.")
