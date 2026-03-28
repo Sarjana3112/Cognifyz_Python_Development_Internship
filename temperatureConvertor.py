@@ -6,7 +6,8 @@ def c_to_f():
     try:
         c = float(entry_temp.get())
         f = (c * 9/5) + 32
-      result_label.config(text=f"Fahrenheit: {f:.2f} °F")
+     
+ result_label.config(text=f"Fahrenheit: {f:.2f} °F")
     except ValueError:
         messagebox.showerror("Error", "Enter a valid number")
 
