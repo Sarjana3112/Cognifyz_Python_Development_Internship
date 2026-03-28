@@ -1,0 +1,39 @@
+import os
+import shutil
+
+# Folder path to organize
+folder_path = input("Enter folder path to organize: ")
+
+if not os.path.exists(folder_path):
+    print("Folder does not exist!")
+else:
+    # File type folders
+    file_types = {
+        "Images": [".jpg", ".png", ".jpeg", ".gif"],
+        "Documents": [".pdf", ".docx", ".txt"],
+        "Videos": [".mp4", ".mkv"],
+        "Audio": [".mp3", ".wav"],
+        "Others": []
+    }
+
+    # Loop through files
+    for file in os.listdir(folder_path):
+        file_location = os.path.join(folder_path, file)
+
+        if os.path.isfile(file_location):
+            moved = False
+            for folder, extensions in file_types.items():
+                if any(file.lower().endswith(ext) for ext in extensions):
+                    destination = os.path.join(folder_path, folder)
+                    os.makedirs(destination, exist_ok=True)
+                    shutil.move(file_location, os.path.join(destination, file))
+                    moved = True
+                    break
+
+            # If file type not matched
+            if not moved:
+                other_folder = os.path.join(folder_path, "Others")
+                os.makedirs(other_folder, exist_ok=True)
+                shutil.move(file_location, os.path.join(other_folder, file))
+
+    print("Files organized successfully!")
